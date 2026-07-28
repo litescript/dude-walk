@@ -1,0 +1,15 @@
+{
+  "name": "dude-walk",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@eslint/js": "...",
+    "eslint": "...",
+    "vite": "..."
+  }
+}
