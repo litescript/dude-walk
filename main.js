@@ -2,9 +2,12 @@ let world = [];
 let buffer = 2;
 const chunkWidth = 36;
 const viewportWidth = window.innerWidth;
+const terrainContainer = document.querySelector('#terrain');
+const chunksVisible = Math.ceil(viewportWidth / chunkWidth);
+
 const terrainTypes = [
   {
-    symbol: '[ → ]',
+    symbol: '[ _ ]',
     left: 0,
     right: 0,
   },
@@ -25,21 +28,17 @@ const terrainTypes = [
   },
 ];
 
-const terrainContainer = document.querySelector('#terrain');
-const chunksVisible = Math.ceil(viewportWidth / chunkWidth);
-
 function buildWorld(world, chunksVisible, terrainTypes) {
   world.push(terrainTypes[Math.floor(Math.random() * terrainTypes.length)]);
   let i = 0;
   while (world.length < chunksVisible + (buffer * 2)) {
-    console.log('inside while, i: ' + i);
+    let matches = [];
     for (let x = 0; x < terrainTypes.length; x++) {
-      console.log('inside while and for, x: ' + x)
-      console.log('inside while and for, i: ' + i);
       if (terrainTypes[x].left === world[i].right) {
-        world.push(terrainTypes[x]);
+        matches.push(terrainTypes[x]);
       }
     }
+    world.push(matches[Math.floor(Math.random() * matches.length)]);
     i++;
   }
 
@@ -47,7 +46,6 @@ function buildWorld(world, chunksVisible, terrainTypes) {
     world.map(chunk => chunk.symbol).join('')
   );
 }
-
 
 document.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowRight') {
