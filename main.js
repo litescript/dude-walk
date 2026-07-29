@@ -48,11 +48,14 @@ function buildWorld(world, chunksVisible, terrainTypes) {
 }
 
 document.addEventListener('keydown', (event) => {
-  if (event.key === 'ArrowRight') {
-    console.log('Right Arrow Pressed');
-  }
-  if (event.key === 'ArrowLeft') {
-    console.log('Left Arrow Pressed');
+  if (event.repeat && event.key === 'ArrowRight') {
+    console.log('The right arrow is being held down!');
+  } else if (event.repeat && event.key === 'ArrowLeft') {
+    console.log('The left arrow is being held down!');
+  } else if (event.key === 'ArrowLeft') {
+    console.log('Left Arrow Pressed Once.');
+  } else if (event.key === 'ArrowRight') {
+    console.log('Right Arrow Pressed Once.');
   }
 });
 
